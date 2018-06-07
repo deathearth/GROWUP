@@ -24,4 +24,4 @@ hs_err_pid*
 
 # forbbiden commit dir/file
 ASSAULT/target/
-.idea/*.*
+.idea/
