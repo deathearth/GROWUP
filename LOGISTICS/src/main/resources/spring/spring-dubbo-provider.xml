@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd        
+    http://code.alibabatech.com/schema/dubbo        
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    
+    <!-- 提供方应用信息，用户计算依赖关系 -->
+    <dubbo:application name = "logistics" />
+    <!-- 使用注册中心暴露服务地址, 直接使用127.0.0.1:2181 我这里报错连接不上 -->
+    <dubbo:registry address = "zookeeper://127.0.0.1:2181" />
+    <!-- 使用dubbo协议在 20880端口暴露服务 -->
+    <dubbo:protocol name = "dubbo" port = "20880" />
+    <!-- 声明服务 -->
+    <dubbo:service version = "1.0.0" interface="com.chl.service.BasicService" ref = "basicService" timeout = "5000"  >
+    </dubbo:service>
+    <!-- 关闭所有服务的启动时检查 (没有提供者时报错) -->
+    <dubbo:consumer check="false" />
+</beans>
